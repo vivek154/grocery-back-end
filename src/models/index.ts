@@ -5,8 +5,12 @@ import RolePermissionModel from './role-permission.model';
 import RoleModel from './role.model';
 import UserOTPModel from './user-otp.model';
 import UserModel from './user.model';
+import VegetableModel from './vegitable.model';
+import FruitsModel from './fruits.model';
+import CategoriesModel from './categories.model';
+import ProductsModel from './products.model';
 
-const sequelize = new Sequelize(config.DB, config.USER, config.PASSWORD, {
+export const sequelize = new Sequelize(config.DB, config.USER, config.PASSWORD, {
     host: config.HOST,
     dialect: config.dialect,
     operatorsAliases: <any>0,
@@ -17,7 +21,7 @@ const sequelize = new Sequelize(config.DB, config.USER, config.PASSWORD, {
         idle: config.pool.idle,
     },
 });
-const db = {
+const db:any = {
     Sequelize,
     sequelize,
     user: UserModel(sequelize, Sequelize),
@@ -25,12 +29,19 @@ const db = {
     role: RoleModel(sequelize, Sequelize),
     permission: PermissionModel(sequelize, Sequelize),
     rolePermission: RolePermissionModel(sequelize, Sequelize),
+    vegetables:VegetableModel(sequelize,Sequelize),
+    fruits:FruitsModel(sequelize,Sequelize),
+    categories:CategoriesModel(sequelize,Sequelize),
+    products:ProductsModel(sequelize,Sequelize),
 };
 
-db.role.belongsToMany(db.permission, { through: db.rolePermission });
-db.permission.belongsToMany(db.role, { through: db.rolePermission });
+// db.role.belongsToMany(db.permission, { through: db.rolePermission });
+// db.permission.belongsToMany(db.role, { through: db.rolePermission });
 
-db.role.hasMany(db.user);
-db.user.belongsTo(db.role);
+// db.role.hasMany(db.user);
+// db.user.belongsTo(db.role);
+// 
+//db.products.sync({ alter: true }).then((res: any) => console.log(res)).catch((error: any) => console.log(error));
+
 
 export default db;

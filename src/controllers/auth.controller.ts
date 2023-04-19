@@ -29,13 +29,13 @@ export const handleAuthOTPInit = async (
     next: NextFunction
 ) => {
     try {
-        const { phoneNumber } = req.body;
+        const { phoneNumber, roleId } = req.body;
 
         if (!phoneNumber) {
             throw new BadRequestError('phoneNumber is required');
         }
 
-        await findOrCreateUser({ phoneNumber });
+        await findOrCreateUser({ phoneNumber, roleId });
 
         const { otp, expiry } = generateOTP();
         const userOTPRecord = await createUserOTP(otp, expiry);
@@ -46,9 +46,7 @@ export const handleAuthOTPInit = async (
             id: userOTPRecord.id,
         };
         const encoded = encode(JSON.stringify(details));
-
-        await sendAuthInitOTPSMS(phoneNumber, otp);
-
+        // await sendAuthInitOTPSMS(phoneNumber, otp);
         res.status(200).json({ data: encoded });
     } catch (ex) {
         next(ex);
@@ -88,12 +86,13 @@ export const handleAuthOTPVerify = async (
         }
 
         const otpRecord = await findUserOTP(decoded.id);
-
         if (otpRecord) {
             if (otpRecord.verified) {
                 throw new BadRequestError('OTP already used');
             } else if (new Date() < otpRecord.expirationTime) {
-                if (otp === otpRecord.otp) {
+                console.log(otp); console.log(otpRecord.otp);
+
+                if (Number(otp) === Number(otpRecord.otp)) {
                     await markUserOTPAsVerified(otpRecord);
                     const user = await getUser({ phoneNumber });
                     if (user && user.id) {
@@ -103,6 +102,18 @@ export const handleAuthOTPVerify = async (
                             data: {
                                 accessToken,
                                 refreshToken,
+                                user
+                            },
+                        });
+                    }
+                    if (user && user.id) {
+                        const accessToken = generateAccessToken(user);
+                        const refreshToken = generateRefreshToken(user);
+                        res.status(200).json({
+                            data: {
+                                accessToken,
+                                refreshToken,
+                                user
                             },
                         });
                     } else {

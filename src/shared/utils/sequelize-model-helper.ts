@@ -5,13 +5,13 @@ export const auditColumns = {
         type: DataTypes.DATE,
     },
     createdBy: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
     },
     updatedAt: {
         type: DataTypes.DATE,
     },
     updatedBy: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
     },
     deleted: {
         type: DataTypes.BOOLEAN,

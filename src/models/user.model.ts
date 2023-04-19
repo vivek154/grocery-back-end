@@ -1,15 +1,15 @@
-import { DataTypes, Sequelize } from 'sequelize';
+import { DataTypes } from 'sequelize';
 import { auditColumns } from '../shared/utils/sequelize-model-helper';
 
 /* eslint @typescript-eslint/no-unused-vars: "off" */
-const UserModel = (sequelize: Sequelize, _Sequelize: any) => {
+const UserModel = (sequelize: any, _Sequelize: any) => {
     const User = sequelize.define(
         'Users',
         {
             id: {
-                type: DataTypes.INTEGER,
-                autoIncrement: true,
-                primaryKey: true,
+                type: DataTypes.UUID,
+                defaultValue: DataTypes.UUIDV4,
+                primaryKey: true
             },
             email: {
                 type: DataTypes.STRING,
@@ -24,13 +24,16 @@ const UserModel = (sequelize: Sequelize, _Sequelize: any) => {
             password: {
                 type: DataTypes.STRING,
             },
-            RoleId: {
+            roleId: {
                 type: DataTypes.INTEGER,
                 allowNull: true,
                 references: {
                     model: 'Roles',
                     key: 'id',
                 },
+            },
+            fullName: {
+                type: DataTypes.STRING,
             },
             ...auditColumns,
         },

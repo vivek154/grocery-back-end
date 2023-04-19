@@ -118,7 +118,7 @@ export const decode = (string: string) => {
 };
 
 export const generateOTP = () => {
-    const otp = otpGenerator.generate(6, {
+    const otp = process.env.IS_NODE_ENV === 'Development' ? '123456' : otpGenerator.generate(6, {
         digits: true,
         lowerCaseAlphabets: false,
         upperCaseAlphabets: false,
