@@ -8,7 +8,7 @@ import authRouter from './routes/auth.route';
 import userRouter from './routes/user.route';
 import verifyAuth from './shared/middlewares/verify-auth.middleware';
 import { errorHandler } from './shared/middlewares/error-handler.middleware';
-import vegetableRouter from './routes/vegetable.route';
+
 import { categoriesRouter } from './routes/categories.route';
 import { productsRouter } from './routes/products.route';
 
@@ -33,10 +33,11 @@ app.get(BASE_URL, (req: any, res: any) => {
 app.use(BASE_ROUTES.HEALTH_CHECK, healthCheckRouter);
 app.use(BASE_ROUTES.AUTH, authRouter);
 app.use(BASE_ROUTES.USERS, verifyAuth, userRouter);
-//app.use(BASE_ROUTES.vegetable, verifyAuth, vegetableRouter);
-app.use(BASE_ROUTES.vegetable,vegetableRouter);
+
+
 app.use(BASE_ROUTES.categories,categoriesRouter);
 app.use(BASE_ROUTES.products,productsRouter);
+
 
 app.use(errorHandler);
 
