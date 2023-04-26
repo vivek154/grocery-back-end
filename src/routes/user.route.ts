@@ -1,6 +1,6 @@
 import express from 'express';
 import { handleCreateUser } from '../controllers/user.controller';
-import { EMPTY_ROUTE, ROUTES } from '../shared/constants/url';
+import { ROUTES } from '../shared/constants/url';
 
 const userRouter = express.Router();
 

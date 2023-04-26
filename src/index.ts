@@ -1,5 +1,4 @@
 import { app } from './app';
-import db from './models';
 import { initializeSchedulers } from './services/scheduler.service';
 
 const PORT = process.env.PORT || 9000;

@@ -1,9 +1,9 @@
+import { Op } from 'sequelize';
 import db from '../models';
 import { queryGetSearchedProducts } from './query';
-import { WhereOptions,Op } from 'sequelize';
 
 
-let Products = db.products;
+const Products = db.products;
 
 export const createProduct = async (
     categoryId: number,
@@ -12,24 +12,20 @@ export const createProduct = async (
     price: number,
     discount: number,
     imageUrl: string
-) => {
-    return await Products.create({
-        categoryId,
-        name,
-        description,
-        price,
-        discount,
-        imageUrl,
-    });
-};
+) => await Products.create({
+    categoryId,
+    name,
+    description,
+    price,
+    discount,
+    imageUrl,
+});
 
-export const getAllCategoryProducts = async (categoryId: number) => {
-    return await Products.findAll({
-        where: {
-            categoryId: categoryId,
-        },
-    });
-};
+export const getAllCategoryProducts = async (categoryId: number) => await Products.findAll({
+    where: {
+        categoryId,
+    },
+});
 
 export const getAllProducts = async () => await Products.findAll();
 

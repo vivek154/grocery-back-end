@@ -9,12 +9,11 @@ import {
 export const handleCreateCategory = async (
     req: Request,
     res: Response,
-    next: NextFunction
 ) => {
     const { roleId, name } = req.body;
     if (roleId === 1) {
         try {
-            let category = await createCategory(name);
+            const category = await createCategory(name);
             res.status(200).json(category);
         } catch (err) {
             console.log(err);
@@ -25,19 +24,18 @@ export const handleCreateCategory = async (
 };
 
 export const handleGetAllCategories = async (req: Request, res: Response) => {
-    let categories = await getAllCategories();
+    const categories = await getAllCategories();
     res.status(200).json(categories);
 };
 
 export const handleGetCategoryByName = async (
     req: Request,
     res: Response,
-    next: NextFunction
 ) => {
-    let categoryName = req.params.categoryName.toLowerCase();
+    const categoryName = req.params.categoryName.toLowerCase();
     console.log('categoryName------handleGetCategoryByName-', categoryName);
     if (categoryName) {
-        let category = await getCategoryByName(categoryName);
+        const category = await getCategoryByName(categoryName);
         res.status(200).json(category);
     }
 };
@@ -49,7 +47,7 @@ export const handleGetMostSearchedCategories = async (
 ) => {
     try {
         console.log("controller")
-        let response = await getMostSearchedCategories();
+        const response = await getMostSearchedCategories();
         console.log('get Most searched categories', response);
         res.status(200).json(response);
     } catch (ex) {

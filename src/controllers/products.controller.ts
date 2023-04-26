@@ -10,11 +10,11 @@ import {
 export const handleCreateProduct = async (
     req: Request,
     res: Response,
-    next: NextFunction
+    
 ) => {
     const { categoryId, name, description, price, discount, imageUrl, roleId } =
         req.body;
-        console.log('req.body', req.body);
+    console.log('req.body', req.body);
 
     if (roleId === 1) {
         try {
@@ -31,7 +31,7 @@ export const handleCreateProduct = async (
             return console.log(err);
         }
     } else {
-        res.send('Not Authorised to add Product');
+        return res.send('Not Authorised to add Product');
     }
 };
 
@@ -61,7 +61,7 @@ export const handleGetCategoryProducts = async (
 
 export const handleSearchProducts = async (req: Request, res: Response) => {
     try {       
-        const keyWord =req.params.keyWord;
+        const {keyWord} = req.params;
         const searchResults = await getAllMatchingProducts(keyWord);
         return res.status(200).json(searchResults);
     } catch (err) {
@@ -78,6 +78,6 @@ export const handleFilterProducts = async (req:Request,res:Response,next:NextFun
     }
     catch(error){
         console.log(error)
-        next(error)
+        return next(error)
     }
 }

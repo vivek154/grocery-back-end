@@ -1,4 +1,4 @@
-import { CANCELLED } from "dns";
+// import { CANCELLED } from "dns";
 
 export const EMPTY_ROUTE = '/';
 export const BASE_URL = '/v1/';

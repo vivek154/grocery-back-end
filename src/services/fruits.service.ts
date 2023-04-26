@@ -7,18 +7,12 @@ export const AddNewItem = async (
     description: String,
     price: String,
     discount: String,
-    image: String) => {
+    image: String) => await Fruits.create({
+    title,
+    description,
+    price,
+    discount,
+    image
+})
 
-    return await Fruits.create({
-        title,
-        description,
-        price,
-        discount,
-        image
-    })
-}
-
-export const getAllItems = async () => {
-    
-    return await Fruits.findAll();
-}
+export const getAllItems = async () => await Fruits.findAll()

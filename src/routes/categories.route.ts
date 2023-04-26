@@ -1,5 +1,6 @@
 import express from 'express';
-import { handleCreateCategory,handleGetAllCategories,handleGetCategoryByName,handleGetMostSearchedCategories } from '../controllers/categories.controller';
+import { handleCreateCategory,handleGetAllCategories,handleGetCategoryByName,
+    handleGetMostSearchedCategories } from '../controllers/categories.controller';
 import { ROUTES } from '../shared/constants/url';
 
 export const categoriesRouter= express.Router();
