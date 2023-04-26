@@ -1,15 +1,13 @@
 import { Sequelize,DataTypes } from "sequelize";
-import { auditColumns } from "../shared/utils/sequelize-model-helper";
 
+const FruitsModel=(sequelize:any,_Sequelize:any)=>{
 
-const VegetableModel=(sequelize:any,_Sequelize:any)=>{
-    const Vegetables = sequelize.define(
-        'Vegetables',
-        {
-           id: {
+    const Fruits=sequelize.define(
+        "Fruits",{
+            id:{
                 type:DataTypes.UUID,
-                defaultValue: DataTypes.UUIDV4,
-                primaryKey:true,
+                defaultValue:DataTypes.UUIDV4, 
+                primaryKey:true
             },
             title:{
                 type:DataTypes.STRING,
@@ -30,13 +28,11 @@ const VegetableModel=(sequelize:any,_Sequelize:any)=>{
             image:{
                 type:DataTypes.STRING,
                 allowNull:true
-            },
-            ...auditColumns,
+            }
         }
-    )
+    );
 
-    return Vegetables;
-
+    return Fruits
 }
 
-export default VegetableModel;
+export default FruitsModel;

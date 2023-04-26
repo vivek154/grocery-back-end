@@ -5,10 +5,10 @@ import RolePermissionModel from './role-permission.model';
 import RoleModel from './role.model';
 import UserOTPModel from './user-otp.model';
 import UserModel from './user.model';
-import VegetableModel from './vegitable.model';
 import FruitsModel from './fruits.model';
 import CategoriesModel from './categories.model';
 import ProductsModel from './products.model';
+
 
 export const sequelize = new Sequelize(config.DB, config.USER, config.PASSWORD, {
     host: config.HOST,
@@ -29,10 +29,10 @@ const db:any = {
     role: RoleModel(sequelize, Sequelize),
     permission: PermissionModel(sequelize, Sequelize),
     rolePermission: RolePermissionModel(sequelize, Sequelize),
-    vegetables:VegetableModel(sequelize,Sequelize),
     fruits:FruitsModel(sequelize,Sequelize),
     categories:CategoriesModel(sequelize,Sequelize),
     products:ProductsModel(sequelize,Sequelize),
+   
 };
 
 // db.role.belongsToMany(db.permission, { through: db.rolePermission });
@@ -41,7 +41,7 @@ const db:any = {
 // db.role.hasMany(db.user);
 // db.user.belongsTo(db.role);
 // 
-//db.products.sync({ alter: true }).then((res: any) => console.log(res)).catch((error: any) => console.log(error));
+// db.categories.sync({ alter: true }).then((res: any) => console.log(res)).catch((error: any) => console.log(error));
 
 
 export default db;
