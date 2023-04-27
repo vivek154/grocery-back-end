@@ -11,24 +11,24 @@ const ProductsModel = (sequelize: any, _Sequelize: any) => {
         },
         categoryId: {
             type: DataTypes.INTEGER,
-            allowNull: false,
+            
         },
         name: {
             type: DataTypes.STRING,
             unique: true,
-            allowNull: false,
+            
         },
         description: {
             type: DataTypes.TEXT('medium'),
-            allowNull: true,
+            
         },
         price: {
             type: DataTypes.DOUBLE,
-            allowNull: false,
+            
         },
         discount: {
             type: DataTypes.INTEGER,
-            allowNull: true,
+            
         },
         imageUrl: {
             type: DataTypes.STRING,
