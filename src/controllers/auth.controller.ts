@@ -89,7 +89,7 @@ export const handleAuthOTPVerify = async (
             if (otpRecord.verified) {
                 throw new BadRequestError('OTP already used');
             } else if (new Date() < otpRecord.expirationTime) {
-                console.log(otp); console.log(otpRecord.otp);
+                
 
                 if (Number(otp) === Number(otpRecord.otp)) {
                     await markUserOTPAsVerified(otpRecord);

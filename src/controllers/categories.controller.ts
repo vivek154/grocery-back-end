@@ -9,6 +9,7 @@ import {
 export const handleCreateCategory = async (
     req: Request,
     res: Response,
+    next: NextFunction
 ) => {
     const { roleId, name } = req.body;
     if (roleId === 1) {
@@ -16,7 +17,7 @@ export const handleCreateCategory = async (
             const category = await createCategory(name);
             res.status(200).json(category);
         } catch (err) {
-            console.log(err);
+            next(err);
         }
     } else {
         res.send('Not autorised to create category');
@@ -31,12 +32,17 @@ export const handleGetAllCategories = async (req: Request, res: Response) => {
 export const handleGetCategoryByName = async (
     req: Request,
     res: Response,
+    next: NextFunction
 ) => {
-    const categoryName = req.params.categoryName.toLowerCase();
-    console.log('categoryName------handleGetCategoryByName-', categoryName);
-    if (categoryName) {
-        const category = await getCategoryByName(categoryName);
-        res.status(200).json(category);
+    try {
+        const categoryName = req.params.categoryName.toLowerCase();
+
+        if (categoryName) {
+            const category = await getCategoryByName(categoryName);
+            res.status(200).json(category);
+        }
+    } catch (err) {
+        next(err);
     }
 };
 
@@ -46,9 +52,7 @@ export const handleGetMostSearchedCategories = async (
     next: NextFunction
 ) => {
     try {
-        console.log("controller")
         const response = await getMostSearchedCategories();
-        console.log('get Most searched categories', response);
         res.status(200).json(response);
     } catch (ex) {
         next(ex);
