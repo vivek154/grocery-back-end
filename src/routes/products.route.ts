@@ -4,7 +4,7 @@ import {
     handleGetAllProducts,
     handleGetCategoryProducts,
     handleSearchProducts,
-    handleFilterProducts
+    handleFilterProducts,
 } from '../controllers/products.controller';
 import { ROUTES } from '../shared/constants/url';
 
