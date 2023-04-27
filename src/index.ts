@@ -19,10 +19,10 @@ const start = async () => {
         '*********************** START - DB SYNC ***********************'
     );
     // await db.sequelize.sync();
-    // console.log(
-    //     '\x1b[36m%s\x1b[0m',
-    //     '*********************** COMPLETED - DB SYNC ***********************'
-    // );
+    console.log(
+        '\x1b[36m%s\x1b[0m',
+        '*********************** COMPLETED - DB SYNC ***********************'
+    );
 
     app.listen(PORT, () => {
         console.log(
