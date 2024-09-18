@@ -1,4 +1,4 @@
-import { WhereOptions } from 'sequelize/types';
+import { where, WhereOptions } from 'sequelize/types';
 import db from '../models';
 import { getPasswordHash } from '../shared/utils/auth-utils';
 
@@ -27,5 +27,9 @@ export const getUser = async (filter: WhereOptions) =>
 export const getUserByEmailId = async (email: string) =>
     await User.scope('withPassword').findOne({ where: { email } });
 
-export const findOrCreateUser = async (filter: WhereOptions) =>
-    await User.findOrCreate({ where: filter });
+export const findOrCreateUser = async (filter: any) =>{
+     return  await User.findOrCreate({ 
+            where: filter,
+            //defaults:filter
+         });
+}

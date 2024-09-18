@@ -7,6 +7,7 @@ import UserOTPModel from './user-otp.model';
 import UserModel from './user.model';
 import CategoriesModel from './categories.model';
 import ProductsModel from './products.model';
+import CartModel from './Cart.model';
 
 export const sequelize = new Sequelize(
     config.DB,
@@ -34,6 +35,9 @@ const db: any = {
     rolePermission: RolePermissionModel(sequelize, Sequelize),
     categories: CategoriesModel(sequelize, Sequelize),
     products: ProductsModel(sequelize, Sequelize),
+    cart:CartModel(sequelize,Sequelize)
 };
 
+db.categories
+.sync({ alter: true }).then((res: any) => console.log(res)).catch((error: any) => console.log(error));
 export default db;

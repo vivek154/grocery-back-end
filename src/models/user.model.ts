@@ -27,13 +27,14 @@ const UserModel = (sequelize: any, _Sequelize: any) => {
             roleId: {
                 type: DataTypes.INTEGER,
                 allowNull: true,
-                references: {
-                    model: 'Roles',
-                    key: 'id',
-                },
+                // references: {
+                //     model: 'Roles',
+                //     key: 'id',
+                // },
             },
             fullName: {
                 type: DataTypes.STRING,
+                allowNull: true
             },
             ...auditColumns,
         },

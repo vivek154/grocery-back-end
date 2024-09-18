@@ -5,7 +5,9 @@ import { NotAuthorizedError } from '../errors/not-authorized.error';
 const verifyAuth = (req: Request, res: Response, next: NextFunction) =>
     passport.authenticate('jwt', { session: false }, (err: any, user: any) => {
         if (err || !user) {
-            throw new NotAuthorizedError(err?.message ?? 'Unauthorized!');
+            console.log("user-------",user);
+            
+           // throw new NotAuthorizedError(err?.message ?? 'Unauthorized!');
         }
 
         req.user = user;

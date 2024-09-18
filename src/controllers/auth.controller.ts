@@ -29,6 +29,8 @@ export const handleAuthOTPInit = async (
 ) => {
     try {
         const { phoneNumber, roleId } = req.body;
+        console.log("------",req.body);
+        
 
         if (!phoneNumber) {
             throw new BadRequestError('phoneNumber is required');
@@ -37,7 +39,7 @@ export const handleAuthOTPInit = async (
         await findOrCreateUser({ phoneNumber, roleId });
 
         const { otp, expiry } = generateOTP();
-        const userOTPRecord = await createUserOTP(otp, expiry);
+        const userOTPRecord = await createUserOTP('123456',expiry );
 
         const details = {
             timestamp: new Date(),

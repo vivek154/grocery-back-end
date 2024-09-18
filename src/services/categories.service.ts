@@ -1,3 +1,4 @@
+import { Op } from 'sequelize';
 import db from '../models';
 import { queryMostSearchedCategories } from './query';
 
@@ -13,7 +14,7 @@ export const getAllCategories = async () => await Categories.findAll();
 export const getCategoryByName = async (categoryName: string) =>
     await Categories.findOne({
         where: {
-            name: categoryName.trim().toLowerCase(),
+            name: {[Op.iLike]:categoryName.trim().toLowerCase()}
         },
     });
 

@@ -7,6 +7,7 @@ export const BASE_ROUTES = {
     USERS: `${BASE_URL}users`,
     categories: `${BASE_URL}categories`,
     products: `${BASE_URL}products`,
+    cart: `${BASE_URL}cart`
 };
 
 export const ROUTES = {
@@ -25,4 +26,8 @@ export const ROUTES = {
     GET_CATEGORY_BY_NAME: '/search-by-name/:categoryName',
     GET_MOST_SEARCHED_CATEGORIES: '/most-searched',
     FILTER_PRODUCTS: '/filter-products',
+    ADD_TO_CART: '/add-cart',
+    GET_USER_CART: '/get-user-carts',
+    UPDATE_CART_QUANTITY: '/update-quantity',
+    DELETE_ONE_CART_BY_ID: '/delete-one/:cartId',
 };

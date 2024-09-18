@@ -10,6 +10,7 @@ import verifyAuth from './shared/middlewares/verify-auth.middleware';
 import { errorHandler } from './shared/middlewares/error-handler.middleware';
 import { categoriesRouter } from './routes/categories.route';
 import { productsRouter } from './routes/products.route';
+import { cartRouter } from './routes/cart.route';
 
 const app = express();
 
@@ -31,9 +32,9 @@ app.get(BASE_URL, (req: any, res: any) => {
 app.use(BASE_ROUTES.HEALTH_CHECK, healthCheckRouter);
 app.use(BASE_ROUTES.AUTH, authRouter);
 app.use(BASE_ROUTES.USERS, verifyAuth, userRouter);
-
-app.use(BASE_ROUTES.categories, categoriesRouter);
-app.use(BASE_ROUTES.products, productsRouter);
+app.use(BASE_ROUTES.categories, verifyAuth,categoriesRouter);
+app.use(BASE_ROUTES.products,verifyAuth, productsRouter);
+app.use(BASE_ROUTES.cart,verifyAuth, cartRouter);
 
 app.use(errorHandler);
 

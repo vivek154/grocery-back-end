@@ -16,6 +16,9 @@ const CategoriesModel = (sequelize: any, _Sequelize: any) => {
             type: DataTypes.INTEGER,
             defaultValue: 0,
         },
+        thumbnail:{
+            type:DataTypes.TEXT,
+        },
         ...auditColumns,
     });
     return Categories;
